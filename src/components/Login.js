@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import apiAccess from './communication/apiAccess';
 
 
-const Login = () => {
+const Login = (props) => {
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -28,7 +28,7 @@ const Login = () => {
         apiAccess.login(email, password)
         .then(x => {
             if(x.done) {
-                // props.customerLoggedIn(email);
+                props.customerLoggedIn(email);
                     navigate('/');
                 
             } else {

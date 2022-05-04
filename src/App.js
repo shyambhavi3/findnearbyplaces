@@ -8,8 +8,21 @@ import Register from './components/Register';
 import { HashRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Menu from './components/Menu';
+import { useState } from 'react';
 
 function App() {
+  const [customer, setCustomer] = useState(localStorage.getItem('customer'));
+
+  let customerLoggedInHandler = (customerEmail) => {
+    localStorage.setItem('customer', customerEmail);
+    setCustomer(customerEmail);
+  }
+
+  let customerLoggedOutHandler = () => {
+    localStorage.removeItem('customer');
+    setCustomer(undefined);
+
+  }
   return (
     <HashRouter>
 
@@ -21,7 +34,7 @@ function App() {
           </Col>
         </Row>
 
-        <Menu/>
+        <Menu customer={customer} customerLoggedOut = {customerLoggedOutHandler}/>
 
     <Routes>
 
@@ -35,7 +48,7 @@ function App() {
 
     </Route>
 
-    <Route exact path='/login' element={<Login/>}>
+    <Route exact path='/login' element={<Login customerLoggedIn={customerLoggedInHandler} />}>
     
 
     </Route>

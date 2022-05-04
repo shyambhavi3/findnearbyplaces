@@ -5,16 +5,16 @@ import apiAccess from './communication/apiAccess';
 
 const Menu = (props) => {
 
-//   let logout = () => {
-//     apiAccess.logout()
-//     .then(x=>{
-//       props.customerLoggedOut();
-//     })
-//     .catch(e => {
-//       console.log(e);
-//     })
+  let logout = () => {
+    apiAccess.logout()
+    .then(x=>{
+      props.customerLoggedOut();
+    })
+    .catch(e => {
+      console.log(e);
+    })
    
-//   }
+  }
 
     return (
         <Navbar bg="light" expand="lg">
@@ -29,7 +29,7 @@ const Menu = (props) => {
               <Navbar.Text id="text">
                 Signed in as {props.customer}
               </Navbar.Text>  
-              {/* <Nav.Link href="#/" onClick ={logout}>Logout</Nav.Link> */}
+              <Nav.Link href="#/" onClick ={logout}>Logout</Nav.Link>
 
               </>
                             
