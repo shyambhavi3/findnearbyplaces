@@ -1,9 +1,14 @@
+import Button from 'react-bootstrap/Button';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 const Home = () => {
+    const navigate = useNavigate();
     return (
+
         <div>
-            Home
+             <Button variant="light" onClick={() => navigate("/addplace")} >Add Place</Button>
+
         </div>
     );
  }

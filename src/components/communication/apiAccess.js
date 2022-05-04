@@ -48,6 +48,39 @@ let apiAccess ={
          console.log(x);
          return x;
      });
+   },
+
+   getCategory:()=>{
+    return fetch(`${backendAddress}/category/`, {
+        method: 'Get',
+        credentials: "include",
+        headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Credentials": true
+        },
+     })
+    .then(x => x.json())
+    .then(x => {
+        
+        return x;
+    });
+   },
+
+   addCategory:(name)=>{
+    return fetch(`${backendAddress}/category`, {
+        method: 'Post',
+        credentials: "include",
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': true
+        },
+        body: JSON.stringify({name}) 
+     })
+     .then(x => x.json())
+     .then(x => {
+         console.log(x);
+         return x;
+     });
    }
 };
 

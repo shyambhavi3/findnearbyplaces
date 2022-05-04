@@ -9,6 +9,8 @@ import { HashRouter, Routes, Route, Navigate, useParams } from 'react-router-dom
 import Container from 'react-bootstrap/Container';
 import Menu from './components/Menu';
 import { useState } from 'react';
+import AddPlace from './components/AddPlace';
+import AddCategory from './components/AddCategory'
 
 function App() {
   const [customer, setCustomer] = useState(localStorage.getItem('customer'));
@@ -28,11 +30,7 @@ function App() {
 
     <Container fluid>
 
-    <Row>
-          <Col>
-            <Header />
-          </Col>
-        </Row>
+   
 
         <Menu customer={customer} customerLoggedOut = {customerLoggedOutHandler}/>
 
@@ -49,6 +47,18 @@ function App() {
     </Route>
 
     <Route exact path='/login' element={<Login customerLoggedIn={customerLoggedInHandler} />}>
+    
+
+    </Route>
+
+    
+
+    <Route exact path='/addplace' element={<AddPlace  />}>
+    
+
+    </Route>
+
+    <Route exact path='/addcategory' element={<AddCategory />}>
     
 
     </Route>
