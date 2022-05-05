@@ -139,6 +139,10 @@ const Home = () => {
                                    Longitude: {x.longitude}
                                    <br></br>
                                    Distance: {x.distance}
+                                   <br/>
+                                   Average Rating: { Math.round(x.avg * 10) / 10}
+                                   <br/>
+                                   Category: {x.category_name}
                                 </Card.Text>
                             </Card.Body>
                         </Card>
