@@ -81,7 +81,33 @@ let apiAccess ={
          console.log(x);
          return x;
      });
+   },
+
+   addPlace:(name, category_id, latitude, longitude, description)=>{
+    return fetch(`${backendAddress}/place`, {
+        method: 'Post',
+        credentials: "include",
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': true
+        },
+        body: JSON.stringify({name, category_id, latitude, longitude, description}) 
+     })
+     .then(x => x.json())
+     .then(x => {
+         console.log(x);
+         return x;
+     });
+
    }
+
+   ,
+ saveImage : ( formData) => {
+    return fetch(`${backendAddress}/photo`, { 
+        method: 'POST', 
+        body: formData })
+        .then(x => x.json());
+}
 };
 
 

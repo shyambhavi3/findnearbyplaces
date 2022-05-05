@@ -53,8 +53,7 @@ function App() {
 
     
 
-    <Route exact path='/addplace' element={<AddPlace  />}>
-    
+    <Route exact path='/addplace' element={<ProtectedRoute customer={customer}><AddPlace customer={customer}/></ProtectedRoute>} >
 
     </Route>
 
@@ -74,6 +73,15 @@ function App() {
     </Container>
     </HashRouter>
   );
+}
+
+const ProtectedRoute = ({ customer, children }) => {
+ 
+  if (customer) {
+    return children;
+  } else {
+    return <Navigate to={`/login` }/>;
+  }
 }
 
 export default App;
