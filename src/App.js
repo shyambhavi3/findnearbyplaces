@@ -10,7 +10,8 @@ import Container from 'react-bootstrap/Container';
 import Menu from './components/Menu';
 import { useState } from 'react';
 import AddPlace from './components/AddPlace';
-import AddCategory from './components/AddCategory'
+import AddCategory from './components/AddCategory';
+import UpdatePlace from './components/UpdatePlace';
 
 function App() {
   const [customer, setCustomer] = useState(localStorage.getItem('customer'));
@@ -47,6 +48,10 @@ function App() {
     </Route>
 
     <Route exact path='/login' element={<Login customerLoggedIn={customerLoggedInHandler} />}>
+    
+
+    </Route>
+    <Route exact path='/updateplace/:id' element={<UpdatePlace />}>
     
 
     </Route>

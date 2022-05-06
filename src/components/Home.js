@@ -144,6 +144,10 @@ const Home = () => {
                                    <br/>
                                    Category: {x.category_name}
                                 </Card.Text>
+                                <Button onClick={()=>navigate('/updateplace/'+x.location_id)} >Update</Button>
+                                <br></br>
+                                <br></br>
+                                <Button>Delete</Button>
                             </Card.Body>
                         </Card>
                     </Col>

@@ -4,15 +4,14 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import apiAccess from './communication/apiAccess';
 
-
-
-const AddPlace = () => {
-    const [name, setName] = useState('');
-    const [latitude, setLatitude] = useState('');
-    const [longitude, setLongitude] = useState('')
-    const [description, setDescription] = useState('');
+const UpdatePlace = ()=>{
+    const { id } = useParams();
+    const [name, setName] = useState(undefined);
+    const [latitude, setLatitude] = useState(undefined);
+    const [longitude, setLongitude] = useState(undefined);
+    const [description, setDescription] = useState(undefined);
     const [category, setCategory] = useState([]);
-    const [categoryVal, setCategoryVal] = useState('1');
+    const [categoryVal, setCategoryVal] = useState(undefined);
     const [image, setImage] = useState([]);
     const navigate = useNavigate();
 
@@ -31,7 +30,6 @@ const AddPlace = () => {
     let onDescriptionChanged = (e) => {
         setDescription(e.target.value);
     }
-
     let onCategoryValChanged = (e) => {
         
         for (let x in category) {
@@ -48,34 +46,34 @@ const AddPlace = () => {
     let onImageChanged = (e) => {
         setImage(e.target.files[0]);
         console.log(e.target.files[0]);
-        
     }
 
-    let OnSubmitHandler = (e) => {
+    let OnSubmitHandler = (e)=>{
         e.preventDefault();
+
         let formData = new FormData();
         formData.append("file", image);
-        
-       
-        
-        apiAccess.addPlace(name, categoryVal, latitude, longitude, description)
+        let place_id=id;
+
+        apiAccess.updatePlace(place_id, name, categoryVal, latitude, longitude, description)
         .then(x=>{
-            let place_id= x.id;
-            formData.append("place_id", place_id);
-            apiAccess.saveImage(formData)
+            
+            let photo_id= x.photo_id;
+            formData.append("photo_id", photo_id);
+            if(image!=[]){
+                apiAccess.updateImage(formData)
             .then(x=>console.log(x));
+
+            }else{
+                console.log(x);
+            }
+            
         })
         .catch(e => {
             console.log(e);
             alert('Something went wrong!');
         });  
-        
-
-
     }
-
-
-
 
     useEffect(() => {
         apiAccess.getCategory()
@@ -86,34 +84,37 @@ const AddPlace = () => {
             })
     }, []);
 
-    return (
-        <Form onSubmit={OnSubmitHandler} >
 
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+    return(
+        
+        <Form onSubmit={OnSubmitHandler}>
+        <p>The place will not be updated if you are not the person who added it initially.</p>
+
+<Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Name</Form.Label>
-                <Form.Control required type="text" placeholder="Enter Name" value={name} onChange={onNameChanged} />
+                <Form.Control type="text" placeholder="Enter Name" value={name} onChange={onNameChanged} />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Latitude</Form.Label>
-                <Form.Control required type="number" placeholder="Latitude" value={latitude} onChange={onLatitudeChanged} />
+                <Form.Control  type="number" placeholder="Latitude" value={latitude} onChange={onLatitudeChanged} />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Longitude</Form.Label>
-                <Form.Control required type="number" placeholder="Longitude" value={longitude} onChange={onLongitudeChanged} />
+                <Form.Control  type="number" placeholder="Longitude" value={longitude} onChange={onLongitudeChanged} />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Description</Form.Label>
-                <Form.Control required type="text" placeholder="Description" value={description} onChange={onDescriptionChanged} />
+                <Form.Control  type="text" placeholder="Description" value={description} onChange={onDescriptionChanged} />
             </Form.Group>
-
 
             <Form.Group controlId="formBasicSelect">
                 <Form.Label>Choose Category</Form.Label>
                 <Form.Control   as="select"  onChange={onCategoryValChanged}>
+                    <option value=''></option>
                     {category.map((x) => (<option value={x.name} >{x.name}</option>))}
                     
                 </Form.Control>
@@ -123,19 +124,19 @@ const AddPlace = () => {
 
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Add Image</Form.Label>
-                <Form.Control required type="file" onChange={onImageChanged} />
+                <Form.Control  type="file" onChange={onImageChanged} />
             </Form.Group>
-
-            <br></br>
-
-
 
             <Button variant="primary" type="submit" >
                 Submit
             </Button >
-        </Form>
-    );
 
+
+        </Form>
+
+
+
+    )
 }
 
-export default AddPlace;
+export default UpdatePlace;
