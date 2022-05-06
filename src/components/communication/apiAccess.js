@@ -156,7 +156,27 @@ let apiAccess = {
 
         
 
+    },
+
+    deletePlace:(place_id)=>{
+        return fetch(`${backendAddress}/place/${place_id}`, {
+            method: 'delete',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true
+            },
+        })
+            .then(x => x.json())
+            .then(x => {
+                console.log(x);
+                return x;
+            });
+
+        
+
     }
+
 
 
 };

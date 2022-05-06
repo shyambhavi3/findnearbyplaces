@@ -147,7 +147,7 @@ const Home = () => {
                                 <Button onClick={()=>navigate('/updateplace/'+x.location_id)} >Update</Button>
                                 <br></br>
                                 <br></br>
-                                <Button>Delete</Button>
+                                <Button onClick={()=>apiAccess.deletePlace(x.location_id)}>Delete</Button>
                             </Card.Body>
                         </Card>
                     </Col>
