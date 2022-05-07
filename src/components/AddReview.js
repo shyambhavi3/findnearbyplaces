@@ -35,7 +35,8 @@ const AddReview = () => {
             let review_id= x.id;
             formData.append("review_id", review_id);
             apiAccess.saveImage(formData)
-            .then(x=>console.log(x));
+            .then(x=>{ alert('Added Successfully!');
+            console.log(x)});
         })
         .catch(e => {
             console.log(e);

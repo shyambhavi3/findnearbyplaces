@@ -63,7 +63,10 @@ const AddPlace = () => {
             let place_id= x.id;
             formData.append("place_id", place_id);
             apiAccess.saveImage(formData)
-            .then(x=>console.log(x));
+            .then(x=>{
+                alert('Added Successfully!');
+                console.log(x)});
+                
         })
         .catch(e => {
             console.log(e);

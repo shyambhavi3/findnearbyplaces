@@ -147,7 +147,16 @@ const Home = () => {
                                 <Button onClick={()=>navigate('/updateplace/'+x.location_id)} >Update</Button>
                                 <br></br>
                                 <br></br>
-                                <Button onClick={()=>apiAccess.deletePlace(x.location_id)}>Delete</Button>
+                                <Button onClick={()=>{
+                                    apiAccess.deletePlace(x.location_id)
+                                    .then(x=>{
+                                        alert(x.message)
+                                    })
+                                    .catch(e=>{
+                                        alert('something went wrong')
+                                    })
+                                
+                                }}>Delete</Button>
                                 <br></br>
                                 <br></br>
                                 <Button onClick={()=>navigate('/viewreview/'+x.location_id)}>View Reviews</Button>
