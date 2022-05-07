@@ -49,6 +49,10 @@ function App() {
 
     </Route>
 
+    <Route exact path='/login/:from' element={<Login customerLoggedIn={customerLoggedInHandler} />}>
+
+    </Route>
+
     <Route exact path='/login' element={<Login customerLoggedIn={customerLoggedInHandler} />}>
     
 
@@ -95,11 +99,18 @@ function App() {
 }
 
 const ProtectedRoute = ({ customer, children }) => {
- 
+  const { id } = useParams();
+  console.log(id);
+
   if (customer) {
     return children;
   } else {
-    return <Navigate to={`/login` }/>;
+    if(id){
+      return <Navigate to={`/login/${id}` }/>;
+    }else{
+      return <Navigate to={`/login/addplace` }/>;
+    }
+    
   }
 }
 

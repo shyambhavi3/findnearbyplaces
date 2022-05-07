@@ -150,7 +150,7 @@ const Home = () => {
                                 <Button onClick={()=>apiAccess.deletePlace(x.location_id)}>Delete</Button>
                                 <br></br>
                                 <br></br>
-                                <Button onClick={()=>navigate('/viewreview/'+x.location_id)}>View Review</Button>
+                                <Button onClick={()=>navigate('/viewreview/'+x.location_id)}>View Reviews</Button>
                                 <br></br>
                                 <br></br>
                                 <Button onClick={()=>navigate('/addreview/'+x.location_id)}>Add Review</Button>

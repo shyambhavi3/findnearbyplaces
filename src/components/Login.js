@@ -6,7 +6,7 @@ import apiAccess from './communication/apiAccess';
 
 
 const Login = (props) => {
-    
+    const { from } = useParams();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -29,7 +29,17 @@ const Login = (props) => {
         .then(x => {
             if(x.done) {
                 props.customerLoggedIn(email);
+                if(from){
+                    if(from=='addplace'){
+                        navigate('/addplace')
+                    }else{
+                        navigate('/addreview/'+from)
+                    }
+                }else{
                     navigate('/');
+                    
+                }
+                    
                 
             } else {
                 alert('The credentials are not valid!');
