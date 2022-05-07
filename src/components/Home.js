@@ -130,7 +130,7 @@ const Home = () => {
                 {searchResult.map((x, index) => (
                     <Col key={index}>
                         <Card className="h-100">
-                            <Card.Img variant="top" src={`http://localhost:4000/image/${x.photo_id}`}/>
+                            <Card.Img variant="top" src={`https://shyambhavi3-findnearbyplaces.herokuapp.com/image/${x.photo_id}`}/>
                             <Card.Body>
                                 <Card.Title>{x.location_name}</Card.Title>
                                 <Card.Text>
