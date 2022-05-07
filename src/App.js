@@ -13,6 +13,7 @@ import AddPlace from './components/AddPlace';
 import AddCategory from './components/AddCategory';
 import UpdatePlace from './components/UpdatePlace';
 import AddReview from './components/AddReview';
+import ViewReview from './components/ViewReview';
 
 function App() {
   const [customer, setCustomer] = useState(localStorage.getItem('customer'));
@@ -64,6 +65,11 @@ function App() {
     </Route>
 
     <Route exact path='/addcategory' element={<AddCategory />}>
+    
+
+    </Route>
+
+    <Route exact path='/viewreview/:id' element={<ViewReview />}>
     
 
     </Route>

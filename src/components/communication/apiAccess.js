@@ -2,7 +2,6 @@ let backendAddress = 'http://localhost:4000';
 
 let apiAccess = {
     addCustomer: (email, password) => {
-        console.log('here');
         return fetch(`${backendAddress}/register`, {
             method: 'Post',
             headers: {
@@ -119,6 +118,21 @@ let apiAccess = {
                 return x;
             });
 
+    },
+    getReview: (id) => {
+        return fetch(`${backendAddress}/review/${id}`, {
+            method: 'Get',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Credentials": true
+            },
+        })
+            .then(x => x.json())
+            .then(x => {
+
+                return x;
+            });
     }
 
     ,
