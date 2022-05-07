@@ -1,4 +1,4 @@
-let backendAddress = 'http://localhost:4000';
+let backendAddress = 'https://shyambhavi3-findnearbyplaces.herokuapp.com';
 
 let apiAccess = {
     addCustomer: (email, password) => {
