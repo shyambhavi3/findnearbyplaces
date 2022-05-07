@@ -12,6 +12,7 @@ import { useState } from 'react';
 import AddPlace from './components/AddPlace';
 import AddCategory from './components/AddCategory';
 import UpdatePlace from './components/UpdatePlace';
+import AddReview from './components/AddReview';
 
 function App() {
   const [customer, setCustomer] = useState(localStorage.getItem('customer'));
@@ -63,6 +64,13 @@ function App() {
     </Route>
 
     <Route exact path='/addcategory' element={<AddCategory />}>
+    
+
+    </Route>
+
+    
+
+    <Route exact path='/addreview/:id' element={<ProtectedRoute customer={customer}><AddReview  customer={customer}/></ProtectedRoute>}>
     
 
     </Route>

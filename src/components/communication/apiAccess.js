@@ -102,6 +102,26 @@ let apiAccess = {
     }
 
     ,
+
+    addReview: (place_id,comment,rating) => {
+        return fetch(`${backendAddress}/review`, {
+            method: 'Post',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true
+            },
+            body: JSON.stringify({ place_id,comment,rating})
+        })
+            .then(x => x.json())
+            .then(x => {
+                console.log(x);
+                return x;
+            });
+
+    }
+
+    ,
     saveImage: (formData) => {
         console.log(formData)
         return fetch(`${backendAddress}/photo`, {
